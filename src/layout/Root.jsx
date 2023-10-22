@@ -2,11 +2,11 @@ import { Outlet } from "react-router-dom";
 import Header from "../pages/Header/Header";
 import Footer from "../pages/Footer/Footer";
 
-const MainLayout = () => {
+const Root = () => {
   return (
     <>
       <Header />
-      <div>
+      <div className="min-h-[calc(100vh-586px)]">
         <Outlet />
       </div>
       <Footer />
@@ -14,4 +14,4 @@ const MainLayout = () => {
   );
 };
 
-export default MainLayout;
+export default Root;

@@ -1,7 +1,7 @@
 import { Link, useRouteError } from "react-router-dom";
 import errorImage from "../../assets/error/error.jpg";
 
-const Error = () => {
+const ErrorPage = () => {
   const { error } = useRouteError();
   return (
     <section className="my-10">
@@ -19,4 +19,4 @@ const Error = () => {
   );
 };
 
-export default Error;
+export default ErrorPage;
