@@ -1,0 +1,12 @@
+/* Google font import */
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+
+/* Tailwind directives to CSS */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Common css */
+* {
+  font-family: "Roboto", sans-serif;
+}
