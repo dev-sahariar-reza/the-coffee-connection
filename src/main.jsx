@@ -5,7 +5,6 @@ import "./index.css";
 import Root from "./layout/Root";
 import ErrorPage from "./pages/ErrorPage/ErrorPage";
 import Home from "./pages/Home/Home";
-import Coffees from "./pages/Coffees/Coffees";
 import AddCoffee from "./pages/AddCoffee/AddCoffee";
 import UpdateCoffee from "./pages/UpdateCoffee/UpdateCoffee";
 
@@ -18,10 +17,7 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
-      },
-      {
-        path: "coffees",
-        element: <Coffees />,
+        loader: () => fetch("http://localhost:5000/coffee"),
       },
       {
         path: "addCoffee",
