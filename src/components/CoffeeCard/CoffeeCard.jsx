@@ -54,9 +54,11 @@ const CoffeeCard = ({ coffee, coffees, setCoffees }) => {
               <FaEye />
             </button>
           </Link>
-          <button className="btn btn-square btn-warning mb-3">
-            <FaPen />
-          </button>
+          <Link to={`/updateCoffee/${_id}`}>
+            <button className="btn btn-square btn-warning mb-3">
+              <FaPen />
+            </button>
+          </Link>
           <button
             onClick={() => handleDelete(_id)}
             className="btn btn-square btn-error"

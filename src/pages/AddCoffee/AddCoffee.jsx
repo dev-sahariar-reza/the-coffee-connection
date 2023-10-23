@@ -3,6 +3,7 @@ import { FaArrowLeftLong, FaMugHot } from "react-icons/fa6";
 import Swal from "sweetalert2";
 
 const AddCoffee = () => {
+  // add coffee function
   const handleAddCoffee = (event) => {
     // prevent form loading
     event.preventDefault();

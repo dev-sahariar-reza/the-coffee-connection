@@ -1,7 +1,46 @@
-import { Link } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import { FaArrowLeftLong, FaMugHot } from "react-icons/fa6";
+import Swal from "sweetalert2";
 
 const UpdateCoffee = () => {
+  const coffee = useLoaderData();
+  const { _id, name, chef, country, category, price, photo } = coffee;
+
+  // update coffee function
+  const handleUpdatedCoffee = (event) => {
+    // prevent form loading
+    event.preventDefault();
+
+    // get data
+    const form = event.target;
+    const name = form.name.value;
+    const chef = form.chef.value;
+    const country = form.country.value;
+    const category = form.category.value;
+    const price = form.price.value;
+    const photo = form.photo.value;
+
+    const updatedCoffee = { name, chef, country, category, price, photo };
+    // console.log(newCoffee);
+
+    // fetch data
+    fetch(`http://localhost:5000/coffee/${_id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updatedCoffee),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.modifiedCount > 0) {
+          Swal.fire("Successful!", "You updated the new coffee!", "success");
+          form.reset();
+        }
+      });
+  };
+
   return (
     <section className="container mx-auto my-14">
       <div>
@@ -14,7 +53,7 @@ const UpdateCoffee = () => {
         Update Coffee
       </h1>
 
-      <form>
+      <form onSubmit={handleUpdatedCoffee}>
         <div className="grid grid-cols-2 gap-5">
           <div className="form-control w-full">
             <label className="label">
@@ -24,6 +63,7 @@ const UpdateCoffee = () => {
               className="input input-bordered w-full"
               type="text"
               placeholder="Enter Coffee Name"
+              defaultValue={name}
               name="name"
             />
           </div>
@@ -35,6 +75,7 @@ const UpdateCoffee = () => {
               className="input input-bordered w-full"
               type="text"
               placeholder="Enter Chef Name"
+              defaultValue={chef}
               name="chef"
             />
           </div>
@@ -46,6 +87,7 @@ const UpdateCoffee = () => {
               className="input input-bordered w-full"
               type="text"
               placeholder="Enter Country of Origin"
+              defaultValue={country}
               name="country"
             />
           </div>
@@ -57,6 +99,7 @@ const UpdateCoffee = () => {
               className="input input-bordered w-full"
               type="text"
               placeholder="Enter Category"
+              defaultValue={category}
               name="category"
             />
           </div>
@@ -68,6 +111,7 @@ const UpdateCoffee = () => {
               className="input input-bordered w-full"
               type="text"
               placeholder="Enter Price"
+              defaultValue={price}
               name="price"
             />
           </div>
@@ -79,6 +123,7 @@ const UpdateCoffee = () => {
               className="input input-bordered w-full"
               type="text"
               placeholder="Enter Photo URL"
+              defaultValue={photo}
               name="photo"
             />
           </div>
