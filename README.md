@@ -8,7 +8,7 @@ This is project is a basic crud operation with mongodb. Here you can add new cof
 
 **Client:** React, React Router DOM, TailwindCSS, DaisyUI, React Icons, Sweetalert2 
 
-**Server:** Express, Cors, MongoDB, Dotenv
+**Server:** Express, Cors, MongoDB, Dotenv, Vercel
 
 
 ## Links
