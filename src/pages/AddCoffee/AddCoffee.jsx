@@ -1,7 +1,42 @@
 import { Link } from "react-router-dom";
 import { FaArrowLeftLong, FaMugHot } from "react-icons/fa6";
+import Swal from "sweetalert2";
 
 const AddCoffee = () => {
+  const handleAddCoffee = (event) => {
+    // prevent form loading
+    event.preventDefault();
+
+    // get data
+    const form = event.target;
+    const name = form.name.value;
+    const chef = form.chef.value;
+    const country = form.country.value;
+    const category = form.category.value;
+    const price = form.price.value;
+    const photo = form.photo.value;
+
+    const newCoffee = { name, chef, country, category, price, photo };
+    // console.log(newCoffee);
+
+    // fetch data
+    fetch("http://localhost:5000/coffee", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newCoffee),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        // console.log(data);
+        if (data.insertedId) {
+          Swal.fire("Successful!", "You added a new coffee!", "success");
+          form.reset();
+        }
+      });
+  };
+
   return (
     <section className="container mx-auto my-14">
       <div>
@@ -14,7 +49,7 @@ const AddCoffee = () => {
         Add New Coffee
       </h1>
 
-      <form>
+      <form onSubmit={handleAddCoffee}>
         <div className="grid grid-cols-2 gap-5">
           <div className="form-control w-full">
             <label className="label">
