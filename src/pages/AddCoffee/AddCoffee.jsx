@@ -21,13 +21,16 @@ const AddCoffee = () => {
     // console.log(newCoffee);
 
     // fetch data
-    fetch("http://localhost:5000/coffee", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(newCoffee),
-    })
+    fetch(
+      "https://the-coffee-connection-server-fltn8secz-developer-sahariar-reza.vercel.app/coffee",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newCoffee),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         // console.log(data);
