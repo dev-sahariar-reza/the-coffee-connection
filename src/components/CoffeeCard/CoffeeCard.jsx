@@ -1,7 +1,37 @@
 import { FaEye, FaPen, FaTrash } from "react-icons/fa6";
+import Swal from "sweetalert2";
 
 const CoffeeCard = ({ coffee, coffees, setCoffees }) => {
   const { _id, name, chef, country, category, price, photo } = coffee;
+
+  // delete function
+  const handleDelete = (_id) => {
+    // console.log(_id);
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:5000/coffee/${_id}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            if (data.deletedCount > 0) {
+              Swal.fire("Deleted!", "Your file has been deleted.", "success");
+            }
+            const remaining = coffees.filter((coffee) => coffee._id !== _id);
+            setCoffees(remaining);
+          });
+      }
+    });
+  };
   return (
     <div className="card card-side glass">
       <figure>
@@ -24,7 +54,10 @@ const CoffeeCard = ({ coffee, coffees, setCoffees }) => {
           <button className="btn btn-square btn-warning mb-3">
             <FaPen />
           </button>
-          <button className="btn btn-square btn-error">
+          <button
+            onClick={() => handleDelete(_id)}
+            className="btn btn-square btn-error"
+          >
             <FaTrash />
           </button>
         </div>
