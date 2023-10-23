@@ -1,4 +1,5 @@
 import { FaEye, FaPen, FaTrash } from "react-icons/fa6";
+import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const CoffeeCard = ({ coffee, coffees, setCoffees }) => {
@@ -48,9 +49,11 @@ const CoffeeCard = ({ coffee, coffees, setCoffees }) => {
           </p>
         </div>
         <div className="flex flex-col items-center justify-center">
-          <button className="btn btn-square btn-info mb-3">
-            <FaEye />
-          </button>
+          <Link to={`/coffeeDetails/${_id}`}>
+            <button className="btn btn-square btn-info mb-3">
+              <FaEye />
+            </button>
+          </Link>
           <button className="btn btn-square btn-warning mb-3">
             <FaPen />
           </button>
